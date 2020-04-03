@@ -67,6 +67,7 @@ def get_member(member_id):
 
 
 @app.route('/member', methods=['POST'])
+@protected
 def add_member():
     data = request.get_json()
     name = data['name']
@@ -82,6 +83,7 @@ def add_member():
 
 
 @app.route('/member/<int:member_id>', methods=['PUT', 'PATCH'])
+@protected
 def edit_member(member_id):
     data = request.get_json()
     name = data['name']
@@ -96,6 +98,7 @@ def edit_member(member_id):
 
 
 @app.route('/member/<int:member_id>', methods=['DELETE'])
+@protected
 def delete_member(member_id):
     db = get_db()
     db.execute('delete from members where id = ?', [member_id])
